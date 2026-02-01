@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1С Программист - Разработка и консультации</title>
+    <style>
+        :root {
+            --color-primary: #FFD700;
+            --color-primary-dark: #FFC107;
+            --color-secondary: #FFA000;
+            --color-dark: #F57C00;
+            --color-light: #f1faee;
+            --color-accent: #a8dadc;
+            --color-text: #2b2d42;
+            --color-text-light: #8d99ae;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-light);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #F57C00 0%, #FFD700 100%);
+            color: #2b2d42;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #F57C00 0%, #FFD700 100%);
+            color: #2b2d42;
+            position: relative;
+            overflow: hidden;
+            padding: 8rem 2rem 5rem;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #2b2d42;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .hero-cat {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            opacity: 0.6;
+            pointer-events: none;
+            animation: float 3s ease-in-out infinite;
+            mix-blend-mode: multiply;
+        }
+
+        .hero-cat.left {
+            left: 5%;
+            top: 25%;
+        }
+
+        .hero-cat.right {
+            right: 5%;
+            bottom: 15%;
+        }
+
+        .section-cat {
+            width: 100px;
+            height: 100px;
+            opacity: 0.5;
+            mix-blend-mode: multiply;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #2b2d42;
+            color: white;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+        }
+
+        .cta-button:hover {
+            background-color: #1d3557;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Services Section */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--color-dark);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-with-cat {
+            position: relative;
+        }
+
+        .section-cat-container {
+            position: absolute;
+            top: 20px;
+            right: 5%;
+            z-index: 1;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--color-primary);
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            color: var(--color-dark);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .service-card p {
+            color: var(--color-text-light);
+            line-height: 1.8;
+        }
+
+        /* Free Solutions Section */
+        .solutions-section {
+            background: white;
+            padding: 4rem 0;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .solution-item {
+            background: var(--color-light);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--color-accent);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .solution-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+        }
+
+        .solution-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .solution-item h4 {
+            color: var(--color-dark);
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .solution-item p {
+            color: var(--color-text-light);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: var(--color-secondary);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .download-btn:hover {
+            background-color: var(--color-dark);
+            transform: translateX(3px);
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            background: white;
+            padding: 4rem 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--color-light);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--color-primary);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #F57C00, #FFD700);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .testimonial-info h4 {
+            color: var(--color-dark);
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-info p {
+            color: var(--color-text-light);
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-text {
+            color: var(--color-text);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .testimonial-rating {
+            color: #FFD700;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        /* About Section */
+        .about-section {
+            background: linear-gradient(135deg, #FFA000 0%, #F57C00 100%);
+            color: #2b2d42;
+            position: relative;
+            overflow: hidden;
+            padding: 4rem 0;
+        }
+
+        .about-cat {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            opacity: 0.5;
+            bottom: 10%;
+            left: 5%;
+            animation: float 4s ease-in-out infinite;
+            mix-blend-mode: multiply;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.15rem;
+            line-height: 1.9;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2rem 3rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: var(--color-text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            color: #FFA000;
+        }
+
+        .contact-card h3 {
+            color: var(--color-dark);
+        }
+
+        .contact-card p {
+            color: var(--color-text-light);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #F57C00;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .solutions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-methods {
+                flex-direction: column;
+            }
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            background-color: var(--color-primary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">1С Разработчик</div>
+            <ul class="nav-links">
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#solutions">Бесплатно</a></li>
+                <li><a href="#testimonials">Отзывы</a></li>
+                <li><a href="#about">О себе</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/a2febdec-e85b-4cc4-9d02-eb3cb3d45cc7" alt="Cat" class="hero-cat left">
+        <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/0cc50d85-793b-4816-97aa-28c3d722b23d" alt="Cat" class="hero-cat right">
+        <h1>1С Консультации и Программирование</h1>
+        <p>Помогу настроить программу 1С, создам нужные отчеты и обработки, добавлю недостающий функционал</p>
+        <a href="https://t.me/hurma_excel" class="cta-button" target="_blank">Написать в Telegram</a>
+    </section>
+
+    <!-- Services Section -->
+    <section class="container section-with-cat" id="services">
+        <div class="section-cat-container">
+            <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/a2febdec-e85b-4cc4-9d02-eb3cb3d45cc7" alt="" class="section-cat">
+        </div>
+        <h2 class="section-title">Услуги</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">⚙️</div>
+                <h3>Доработка и внедрение 1С</h3>
+                <p>Настройка и адаптация 1С под специфику вашего бизнеса. Внедрение новых конфигураций и модулей.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Отчеты и обработки</h3>
+                <p>Разработка кастомных отчетов, обработок и печатных форм. Автоматизация рутинных операций.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💡</div>
+                <h3>Консультация по настройкам</h3>
+                <p>Профессиональные консультации по работе с 1С, оптимизации процессов и решению сложных задач.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎓</div>
+                <h3>Обучение</h3>
+                <p>Обучение работе с 1С для пользователей и начинающих разработчиков. Индивидуальный подход.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔗</div>
+                <h3>Интеграция 1С</h3>
+                <p>Интеграция 1С с сайтами, CRM-системами, маркетплейсами и другими внешними сервисами.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🛠️</div>
+                <h3>Техническая поддержка</h3>
+                <p>Техническая поддержка и своевременное обновление конфигураций 1С. Сопровождение проектов.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Solutions Section -->
+    <section class="solutions-section" id="solutions">
+        <div class="container">
+            <h2 class="section-title">Бесплатные решения <span class="badge">В РАЗРАБОТКЕ</span></h2>
+            <p style="text-align: center; color: var(--color-text-light); margin-bottom: 2rem;">
+                Скоро здесь появятся готовые отчеты и обработки для 1С
+            </p>
+            <div style="text-align: center; padding: 4rem 2rem;">
+                <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/0cc50d85-793b-4816-97aa-28c3d722b23d" alt="" style="width: 150px; height: 150px; opacity: 0.4; mix-blend-mode: multiply;">
+                <p style="margin-top: 2rem; font-size: 1.2rem; color: var(--color-text-light);">
+                    💬 Нужна разработка прямо сейчас? <a href="https://t.me/hurma_excel" style="color: var(--color-primary); font-weight: bold;" target="_blank">Напишите мне в Telegram</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="container section-with-cat">
+            <div class="section-cat-container">
+                <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/0cc50d85-793b-4816-97aa-28c3d722b23d" alt="" class="section-cat">
+            </div>
+            <h2 class="section-title">Отзывы клиентов</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">А</div>
+                        <div class="testimonial-info">
+                            <h4>Алексей М.</h4>
+                            <p>Розничная торговля</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-text">
+                        "Быстро настроил выгрузку на маркетплейс. Всё работает стабильно уже полгода. Рекомендую!"
+                    </div>
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">Е</div>
+                        <div class="testimonial-info">
+                            <h4>Екатерина П.</h4>
+                            <p>Бухгалтерия</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-text">
+                        "Сделал отчет по взаиморасчетам под наши требования. Теперь анализ занимает 5 минут вместо часа."
+                    </div>
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">Д</div>
+                        <div class="testimonial-info">
+                            <h4>Дмитрий К.</h4>
+                            <p>Производство</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-text">
+                        "Помог с интеграцией 1С и сайта. Заказы теперь автоматически попадают в базу. Очень доволен."
+                    </div>
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">М</div>
+                        <div class="testimonial-info">
+                            <h4>Мария С.</h4>
+                            <p>Оптовая торговля</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-text">
+                        "Оперативно исправил ошибки после обновления. Всегда отвечает быстро и решает проблемы."
+                    </div>
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">И</div>
+                        <div class="testimonial-info">
+                            <h4>Игорь В.</h4>
+                            <p>Логистика</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-text">
+                        "Настроил печатные формы ТТН по нашему шаблону. Сделано качественно и в срок."
+                    </div>
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/a2febdec-e85b-4cc4-9d02-eb3cb3d45cc7" alt="" class="about-cat">
+        <div class="container">
+            <h2 class="section-title" style="color: #2b2d42;">Сделайте свою работу в 1С проще и быстрее</h2>
+            <div class="about-content">
+                <p style="margin-top: 1.5rem; font-size: 1.3rem;">
+                    Работаю быстро и качественно. Всегда на связи и готов помочь с любыми вопросами по 1С.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section container" id="contact">
+        <h2 class="section-title">Связаться со мной</h2>
+        <div class="contact-methods">
+            <a href="https://t.me/hurma_excel" class="contact-card" target="_blank">
+                <div class="contact-icon">💬</div>
+                <h3>Telegram</h3>
+                <p>@hurma_excel</p>
+            </a>
+            <a href="https://t.me/hurma_excel" class="contact-card" target="_blank">
+                <div class="contact-icon">📝</div>
+                <h3>Получить консультацию</h3>
+                <p>Бесплатная первичная консультация</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 1С Программист. Все права защищены.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">Профессиональная разработка и поддержка 1С</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Show download message
+        function showDownloadMessage(itemName) {
+            alert(`Для получения "${itemName}" напишите мне в Telegram @hurma_excel\n\nЯ отправлю вам файл и помогу с установкой!`);
+        }
+
+        // Mobile menu toggle (basic implementation)
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '60px';
+                navLinks.style.right = '0';
+                navLinks.style.background = '#F57C00';
+                navLinks.style.padding = '1rem';
+                navLinks.style.borderRadius = '0 0 0 10px';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .solution-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
+
