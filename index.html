@@ -1,12 +1,85 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<title>Мой сайт</title>
-<style>body{text-align:center;padding:50px;}</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анна @hurma_excel - 1C Разработчик</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<h1>Готово!</h1>
-<button onclick="alert('Работает!')">Тест</button>
+    <header>
+        <nav>
+            <div class="logo">@hurma_excel</div>
+            <ul class="nav-links">
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#about">Обо мне</a></li>
+                <li><a href="#projects">Бесплатно</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+            <div class="hamburger">☰</div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>1C Разработчик</h1>
+            <p>Отчеты, обработки, интеграции и Telegram-боты для 1C:Enterprise. Оптимизация кода и автоматизация бизнеса.</p>
+            <a href="#contact" class="btn">Написать в Telegram</a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>Обо мне</h2>
+            <p>Специалист по 1C с опытом в разработке расширений, отчетов (ZUP, УТ), обработок данных, внешних обработок (.epf) и Telegram-ботов. Создаю эффективные решения для бухгалтерии, зарплаты и бизнеса. Делаю контент для разработчиков.[cite:2][cite:4][cite:10]</p>
+            <div class="skills">
+                <div class="skill">1C:Enterprise (UT, ZUP)</div>
+                <div class="skill">Отчеты и обработки</div>
+                <div class="skill">Telegram-боты</div>
+                <div class="skill">Оптимизация кода</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2>Бесплатные решения</h2>
+            <p>Скачивай готовые отчеты, обработки для 1C и Telegram-боты. Добавь свои ссылки на GitHub или файлы.</p>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>1C Отчеты</h3>
+                    <p>Готовые отчеты для ZUP и УТ: сводки по зарплате, загрузке.</p>
+                    <a href="#" class="btn-secondary">Скачать</a>
+                </div>
+                <div class="project-card">
+                    <h3>Разработки 1C</h3>
+                    <p>Обработки импорта/экспорта, рефакторинг, расширения.</p>
+                    <a href="#" class="btn-secondary">Скачать</a>
+                </div>
+                <div class="project-card">
+                    <h3>Telegram-боты</h3>
+                    <p>Боты для трекинга задач, экспорта отчетов в CSV.[cite:10][web:20]</p>
+                    <a href="#" class="btn-secondary">Скачать</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Связаться</h2>
+            <p>Пиши в Telegram: <a href="https://t.me/hurma_excel">@hurma_excel</a></p>
+            <div class="social">
+                <a href="https://t.me/hurma_excel">Telegram</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Анна @hurma_excel. Сделано с ❤️ для 1C сообщества.</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
