@@ -1,0 +1,42 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+header { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); position: fixed; width: 100%; top: 0; z-index: 1000; }
+nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
+.logo { font-size: 1.5rem; font-weight: 700; color: white; }
+.nav-links { display: flex; list-style: none; gap: 2rem; }
+.nav-links a { color: white; text-decoration: none; transition: opacity 0.3s; }
+.nav-links a:hover { opacity: 0.8; }
+.hamburger { display: none; color: white; font-size: 1.5rem; cursor: pointer; }
+
+.hero { display: flex; align-items: center; min-height: 100vh; text-align: center; color: white; padding-top: 80px; }
+.hero h1 { font-size: 4rem; margin-bottom: 1rem; }
+.hero p { font-size: 1.5rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+.btn { background: #ff6b6b; color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 50px; font-weight: 600; transition: transform 0.3s; display: inline-block; }
+.btn:hover { transform: scale(1.05); }
+.btn-secondary { background: transparent; border: 2px solid white; color: white; }
+
+.about, .projects, .contact { padding: 5rem 0; }
+h2 { text-align: center; font-size: 3rem; margin-bottom: 2rem; color: white; }
+.about p { max-width: 800px; margin: 0 auto 2rem; text-align: center; color: white; font-size: 1.2rem; }
+.skills { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+.skill { background: rgba(255,255,255,0.2); padding: 1rem 2rem; border-radius: 50px; color: white; }
+
+.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
+.project-card { background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 20px; text-align: center; backdrop-filter: blur(10px); transition: transform 0.3s; }
+.project-card:hover { transform: translateY(-10px); }
+.project-card h3 { color: white; margin-bottom: 1rem; }
+.project-card p { color: rgba(255,255,255,0.9); margin-bottom: 1.5rem; }
+
+.contact { text-align: center; }
+.contact p { font-size: 1.5rem; margin-bottom: 2rem; }
+.social a { font-size: 1.5rem; color: white; text-decoration: none; }
+
+footer { text-align: center; padding: 2rem; color: white; background: rgba(0,0,0,0.2); }
+
+@media (max-width: 768px) {
+    .hamburger { display: block; }
+    .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: rgba(255,255,255,0.1); flex-direction: column; padding: 1rem; }
+    .hero h1 { font-size: 2.5rem; }
+}
